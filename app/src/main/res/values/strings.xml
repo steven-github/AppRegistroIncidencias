@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">App Registro Incidencias</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Registro de Incidencias</string>
+    <string name="nav_header_subtitle">Grupo Oreo</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="nav_graficos">Gráficos</string>
+    <string name="nav_actualizar_incidencia">Actualizar Incidencia</string>
+    <string name="nav_incidencias">Incidencias</string>
+    <string name="nav_registro_usuario">Registro Usuario</string>
+</resources>
