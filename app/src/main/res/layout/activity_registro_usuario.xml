@@ -81,7 +81,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/cedulaBox"
+                    android:id="@+id/txtCedula"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -89,7 +89,7 @@
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/nombreBox"
+                    android:id="@+id/txtNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -97,30 +97,35 @@
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/paisBox"
+                    android:id="@+id/txtProvincia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="@string/provincia"
                     android:inputType="textPersonName" />
 
+                <RadioGroup
+                    android:id="@+id/radioSex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Masculino" />
+                    <RadioButton
+                        android:id="@+id/radioMale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Femenino" />
 
-                <RadioButton
-                    android:id="@+id/radioButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Femenino" />
+                    <RadioButton
+                        android:id="@+id/radioFemale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Masculino" />
+
+                </RadioGroup>
 
 
                 <EditText
-                    android:id="@+id/correoBox"
+                    android:id="@+id/txtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
