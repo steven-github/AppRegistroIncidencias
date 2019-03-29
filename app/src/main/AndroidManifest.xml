@@ -36,6 +36,7 @@
             android:name=".activity_camara"
             android:label="@string/title_activity_camara"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
        //Indicar a la aplicacion donde se aloja la aplicacion en el dispositivo
         <provider
         android:name="android.support.v4.content.FileProvider"
