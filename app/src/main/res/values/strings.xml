@@ -12,8 +12,13 @@
     <string name="nav_registro_usuario">Registro Usuario</string>
     <string name="cedula">Cedula</string>
     <string name="nombre">Nombre</string>
+    <string name="apellido1">Primer Apellido</string>
+    <string name="apellido2">Segundo Apellido</string>
     <string name="provincia">Provincia</string>
     <string name="sexo">Sexo</string>
     <string name="correo">Correo</string>
+    <string name="telefono">Teléfono</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm">Confirmar</string>
     <string name="formulario">Formulario de Registro</string>
 </resources>
