@@ -16,4 +16,5 @@
     <string name="sexo">Sexo</string>
     <string name="correo">Correo</string>
     <string name="formulario">Formulario de Registro</string>
+    <string name="title_activity_camara">activity_camara</string>
 </resources>
