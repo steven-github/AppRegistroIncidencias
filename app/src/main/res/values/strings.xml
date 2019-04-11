@@ -22,6 +22,7 @@
     <string name="confirm">Confirmar</string>
     <string name="formulario">Formulario de Registro</string>
     <string name="title_activity_camara">activity_camara</string>
+    <string name="prueba">prueba</string>
     <string name="boton">Guardar</string>
     <string name="graficosTitulo">Graficos</string>
     <string name="graficosUsuariosPorFecha">Usuarios Registrados Por Fecha</string>
