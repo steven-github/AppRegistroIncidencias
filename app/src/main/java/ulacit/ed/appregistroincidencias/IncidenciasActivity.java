@@ -1,78 +1,52 @@
 package ulacit.ed.appregistroincidencias;
 
-import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ImageView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.File;
 
 public class IncidenciasActivity extends AppCompatActivity {
-    private EditText agenda;
-    private Button guardar;
+    private ImageView imagen1;
+    private EditText et1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incidencias);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        agenda =(EditText)findViewById(R.id.txt_agenda);
-        guardar = (Button)findViewById(R.id.btn_guardar);
-
-        String documentos[] = fileList();
-        if(ExisteDocumento(documentos,"agenda.txt")){
-            try {
-
-                InputStreamReader documento = new InputStreamReader(openFileInput("agenda.txt"));
-                BufferedReader br = new BufferedReader(documento);
-                String texto = br.readLine();
-                String agendacompleta ="";
-
-                while (texto != null){
-                    agendacompleta = agendacompleta + texto + "\n";
-                    texto = br.readLine();
-                }
-                br.close();
-                documento.close();;
-                agenda.setText(agendacompleta);
-            }catch (IOException e){}
-
-        }
+        imagen1=(ImageView)findViewById(R.id.imageView);
+        et1=(EditText)findViewById(R.id.editText);
     }
 
-    private boolean ExisteDocumento(String[] documentos, String nombreDocumento) {
-        for(int i =0; i < documentos.length; i++ )
-            if(nombreDocumento.equals(documentos[i]))
-                return true;
-
-        return false;
+    public void tomarFoto(View v) {
+        Intent intento1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File foto = new File(getExternalFilesDir(null), et1.getText().toString());
+        intento1.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(foto));
+        startActivity(intento1);
     }
 
-    public void Guardar(View v){
-        try{
-            OutputStreamWriter documento = new OutputStreamWriter(openFileOutput("agenda.txt", Activity.MODE_PRIVATE));
-            documento.write(agenda.getText().toString());
-            documento.flush();
-            documento.close();
-        }catch (IOException e){
-
-        }
-        Toast msj = Toast.makeText(this,"Registrado exitosamente", Toast.LENGTH_SHORT);
-        msj.show();
-
-
+    public void recuperarFoto(View v) {
+        Bitmap bitmap1 = BitmapFactory.decodeFile(getExternalFilesDir(null)+"/"+et1.getText().toString());
+        imagen1.setImageBitmap(bitmap1);
     }
 
-
-
+    public void ver(View v) {
+        Intent intento1=new Intent(this,ImagenesIncidencias.class);
+        startActivity(intento1);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -83,4 +57,5 @@ public class IncidenciasActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

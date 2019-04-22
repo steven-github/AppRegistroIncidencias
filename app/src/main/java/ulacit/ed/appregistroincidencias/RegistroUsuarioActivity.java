@@ -1,5 +1,7 @@
 package ulacit.ed.appregistroincidencias;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -9,6 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import ulacit.ed.appregistroincidencias.utilidades.Utilidades;
 
 import java.util.regex.Pattern;
 
@@ -24,8 +29,10 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
             "$");
 
     // Get the widgets reference from XML layout
+    private EditText txtCedula, txtNombre, txtProvincia, txtEmail ;
     private EditText txtCedula, txtNombre, txtProvincia, txtEmail, txtPassword, txtPassword2;
     Button btn;
+    Button btnRegistrar;
     RadioGroup rdSex;
 
     @Override
@@ -41,12 +48,21 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtPassword2 = (EditText) findViewById(R.id.txtPassword2);
         rdSex = (RadioGroup) findViewById(R.id.radioSex);
-        btn = (Button) findViewById(R.id.reset);
+        Button btn= (Button) findViewById(R.id.reset);
+        Button btnRegistrar =(Button)findViewById(R.id.registrar);
 
 
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+        }
 
 
     }
+
+
+    });
+}
 
     private boolean validarCorreo(){
         String emailInput = txtEmail.getEditableText().toString().trim();
