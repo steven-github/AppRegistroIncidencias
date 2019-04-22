@@ -21,4 +21,8 @@
     <string name="password">Contraseña</string>
     <string name="confirm">Confirmar</string>
     <string name="formulario">Formulario de Registro</string>
+    <string name="graficosTitulo">Graficos</string>
+    <string name="graficosUsuariosPorFecha">Usuarios Registrados Por Fecha</string>
+    <string name="graficosReportesPorArea">Reportes Registrados Por Area</string>
+    <string name="graficosReportesPorFecha">Reportes Registrados Por Fecha</string>
 </resources>
