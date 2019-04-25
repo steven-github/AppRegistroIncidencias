@@ -13,24 +13,26 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+
 import ulacit.ed.appregistroincidencias.utilidades.Utilidades;
 
 import java.util.regex.Pattern;
 
 
 public class RegistroUsuarioActivity extends AppCompatActivity {
-    private static final Pattern PSWD_Pattern = Pattern.compile("^" +
-            //"(?=.*[0-9])" +         //at least 1 digit
-            //"(?=.*[a-z])" +         //at least 1 lower case letter
-            //"(?=.*[A-Z])" +         //at least 1 upper case letter
-            "(?=.*[a-zA-Z])" +      //any letter
+    private static final Pattern PSWD_Pattern =
+            Pattern.compile("^" +
+            "(?=.*[0-9])" +         //at least 1 digit
+            "(?=.*[a-z])" +         //at least 1 lower case letter
+            "(?=.*[A-Z])" +         //at least 1 upper case letter
+           // "(?=.*[a-zA-Z])" +      //any letter
             "(?=\\S+$)" +           //no white spaces
             ".{4,}" +               //at least 4 characters
             "$");
 
     // Get the widgets reference from XML layout
-    private EditText txtCedula, txtNombre, txtProvincia, txtEmail ;
     private EditText txtCedula, txtNombre, txtProvincia, txtEmail, txtPassword, txtPassword2;
+
     Button btn;
     Button btnRegistrar;
     RadioGroup rdSex;
@@ -55,20 +57,25 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+                if(!validarCorreo() | !validarContrasenas() | !validarContrasena()){
+                    return;
+                }
+                Toast msj =Toast.makeText(null,"Usuario registrado exitosamente",Toast.LENGTH_SHORT);
+                msj.show();
         }
+
+
+    });
 
 
     }
 
 
-    });
-}
-
     private boolean validarCorreo(){
         String emailInput = txtEmail.getEditableText().toString().trim();
 
         if(emailInput.isEmpty()){
-            txtEmail.setError("Campo no puede estar vacio");
+            txtEmail.setError("Este campo no puede estar vacio");
             return false;
         }else if(!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText()).matches()){
             txtEmail.setError("Ingrese un correo valido");
@@ -85,10 +92,10 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         String passwordInput = txtPassword.getEditableText().toString().trim();
 
         if(passwordInput.isEmpty()){
-            txtPassword.setError("Campo no puede estar vacio");
+            txtPassword.setError("Este campo no puede estar vacio");
             return false;
-        }else if(!PSWD_Pattern.matcher(txtEmail.getText()).matches()){
-            txtPassword.setError("La contraseña debe incluir por lo menos 1 digito, 1 leta mayuscula y por lo menos 4 caracteres");
+        }else if(!PSWD_Pattern.matcher(passwordInput).matches()){
+            txtPassword.setError("La contraseña debe incluir por lo menos 1 numero, 1 letra mayuscula y por lo menos 4 caracteres");
             return false;
         }
         else{
@@ -101,6 +108,11 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     private boolean validarContrasenas(){
         String passwordInput = txtPassword.getEditableText().toString().trim();
         String passwordInput2 = txtPassword2.getEditableText().toString().trim();
+        if(passwordInput.isEmpty() && passwordInput2.isEmpty()){
+            txtPassword.setError("Este campo no puede estar vacio");
+            txtPassword2.setError("Este campo no puede estar vacio");
+            return false;
+        }
 
         if(passwordInput.matches(passwordInput2)){
             txtPassword.setError(null);
