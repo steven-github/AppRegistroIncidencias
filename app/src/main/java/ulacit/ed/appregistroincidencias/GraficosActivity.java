@@ -22,7 +22,7 @@ public class GraficosActivity extends AppCompatActivity {
 
     LineGraphSeries<DataPoint> series;
     BarGraphSeries<DataPoint> barSeries;
-    graphSQLite admin = new graphSQLite(this,"Usuarios",null,1);
+    ConexionSQLiteHelper admin = new ConexionSQLiteHelper(this,"Usuarios",null,1);
     Date date;
     String temp;
 
@@ -46,15 +46,15 @@ public class GraficosActivity extends AppCompatActivity {
         }
         else{
             //Insert de Usuarios
-            admin.insertDataUsuarios(1,"Asdasda","2018-04-21 08:14:17");
-            admin.insertDataUsuarios(2,"Hola","2018-04-21 09:14:17");
-            admin.insertDataUsuarios(3,"Mundo","2018-04-21 10:14:17");
-            admin.insertDataUsuarios(4,"FASdasda","2018-04-21 11:14:17");
-            admin.insertDataUsuarios(5,"Asdasda","2018-04-22 08:14:17");
-            admin.insertDataUsuarios(6,"Hola","2018-04-22 09:14:17");
-            admin.insertDataUsuarios(7,"Mundo","2018-04-23 10:14:17");
-            admin.insertDataUsuarios(8,"FASdasda","2018-04-24 11:14:17");
-            admin.insertDataUsuarios(9,"Asdasda","2018-04-21 08:14:17");
+            admin.insertDataUsuarios(1,"Asdasda","Cartago","Asdasda@gmail.com","123456","Femenino","2018-04-21 08:14:17");
+            admin.insertDataUsuarios(2,"Hola","San Jose","Asdasda@gmail.com","123456","Femenino","2018-04-21 09:14:17");
+            admin.insertDataUsuarios(3,"Mundo","Cartago","Asdasda@gmail.com","123456","Masculino","2018-04-21 10:14:17");
+            admin.insertDataUsuarios(4,"FASdasda","Alajuela","Asdasda@gmail.com","123456","Femenino","2018-04-21 11:14:17");
+            admin.insertDataUsuarios(5,"Asdasda","San Jose","Asdasda@gmail.com","123456","Femenino","2018-04-22 08:14:17");
+            admin.insertDataUsuarios(6,"Hola","San Jose","Asdasda@gmail.com","123456","Masculino","2018-04-22 09:14:17");
+            admin.insertDataUsuarios(7,"Mundo","Heredia","Asdasda@gmail.com","123456","Masculino","2018-04-23 10:14:17");
+            admin.insertDataUsuarios(8,"FASdasda","Puntarenas","Asdasda@gmail.com","123456","Masculino","2018-04-24 11:14:17");
+            admin.insertDataUsuarios(9,"Asdasda","Limon","Asdasda@gmail.com","123456","Femenino","2018-04-21 08:14:17");
 
             //Insert de Reportes
             admin.insertDataReportes(1,9,"San Jose","2018-04-21 08:14:17");
