@@ -28,4 +28,6 @@
     <string name="graficosUsuariosPorFecha">Usuarios Registrados Por Fecha</string>
     <string name="graficosReportesPorArea">Reportes Registrados Por Area</string>
     <string name="graficosReportesPorFecha">Reportes Registrados Por Fecha</string>
+    <string name="title_activity_camara">activity_camara</string>
+    <string name="prueba">prueba</string>
 </resources>
