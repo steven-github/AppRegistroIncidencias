@@ -42,11 +42,11 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
 
     // Get the widgets reference from XML layout
-    private EditText txtCedula, txtNombre, txtProvincia, txtEmail, txtPassword, txtPassword2;
+    private EditText txtCedula, txtNombre,txtApellido1, txtApellido2, txtProvincia, txtEmail, txtPassword, txtPassword2;
 
 
 
-    private String cedulaToString, nombreToString, provinciaToString, emailToString, passwordToString, rdSexToString;
+    private String cedulaToString, nombreToString,apellido1ToString, apellido2ToString, provinciaToString, emailToString, passwordToString, rdSexToString;
 
     Button btn;
     Button btnRegistrar;
@@ -63,6 +63,8 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
         txtCedula = (EditText) findViewById(R.id.txtCedula);
         txtNombre = (EditText) findViewById(R.id.txtNombre);
+        txtApellido1 = (EditText) findViewById(R.id.txtApellido1);
+        txtApellido2 = (EditText) findViewById(R.id.txtApellido2);
         txtProvincia = (EditText) findViewById(R.id.txtProvincia);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
@@ -75,12 +77,14 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
 
     public void registrarUsuario(View view) {
-            if(!validarCorreo() | !validarContrasenas() | !validarContrasena()){
+            if(!validarRequeridos() | !validarCorreo() | !validarContrasenas() | !validarContrasena()){
                 return;
             }
 
         cedulaToString = txtCedula.getText().toString();
         nombreToString = txtNombre.getText().toString();
+        apellido1ToString = txtApellido1.getText().toString();
+        apellido2ToString = txtApellido1.getText().toString();
         provinciaToString = txtProvincia.getText().toString();
         emailToString = txtEmail.getText().toString();
         passwordToString = txtPassword.getText().toString();
@@ -153,6 +157,30 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
             txtPassword.setError("Las contraseñas no coinciden");
             txtPassword2.setError("Las contraseñas no coinciden");
             return false;
+        }
+    }
+
+    private boolean validarRequeridos(){
+        String cedulaInput = txtCedula.getEditableText().toString().trim();
+        String nombreInput = txtNombre.getEditableText().toString().trim();
+        String provinciaInput = txtProvincia.getEditableText().toString().trim();
+        String apellidoInput = txtApellido1.getEditableText().toString().trim();
+        String apellido2Input = txtApellido2.getEditableText().toString().trim();
+
+        if(cedulaInput.isEmpty() || nombreInput.isEmpty() || provinciaInput.isEmpty() || apellidoInput.isEmpty() || apellido2Input.isEmpty()){
+            txtCedula.setError("Este campo no puede estar vacio");
+            txtNombre.setError("Este campo no puede estar vacio");
+            txtApellido1.setError("Este campo no puede estar vacio");
+            txtApellido2.setError("Este campo no puede estar vacio");
+            txtProvincia.setError("Este campo no puede estar vacio");
+            return false;
+        }else{
+            txtCedula.setError(null);
+            txtNombre.setError(null);
+            txtApellido1.setError(null);
+            txtApellido2.setError(null);
+            txtProvincia.setError(null);
+            return true;
         }
     }
 
