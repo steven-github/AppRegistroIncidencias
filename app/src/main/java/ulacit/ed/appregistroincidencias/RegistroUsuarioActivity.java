@@ -1,20 +1,49 @@
 package ulacit.ed.appregistroincidencias;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import ulacit.ed.appregistroincidencias.utilidades.Utilidades;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Pattern;
+
 
 public class RegistroUsuarioActivity extends AppCompatActivity {
 
+    ConexionSQLiteHelper admin = new ConexionSQLiteHelper(this,"Usuarios",null,1);
+
+    private static final Pattern PSWD_Pattern = Pattern.compile("^" +
+            //"(?=.*[0-9])" +         //at least 1 digit
+            //"(?=.*[a-z])" +         //at least 1 lower case letter
+            //"(?=.*[A-Z])" +         //at least 1 upper case letter
+            "(?=.*[a-zA-Z])" +      //any letter
+            "(?=\\S+$)" +           //no white spaces
+            ".{4,}" +               //at least 4 characters
+            "$");
+
     // Get the widgets reference from XML layout
-    private EditText txtCedula, txtNombre, txtProvincia, txtEmail;
+    private EditText txtCedula, txtNombre, txtProvincia, txtEmail, txtPassword, txtPassword2;
+    private String cedulaToString, nombreToString, provinciaToString, emailToString, passwordToString, rdSexToString;
     Button btn;
+    Button btnRegistrar;
     RadioGroup rdSex;
+    RadioButton rdSexBtn;
+    Date currentDate = new Date();
+    String currentDateToString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +55,79 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         txtNombre = (EditText) findViewById(R.id.txtNombre);
         txtProvincia = (EditText) findViewById(R.id.txtProvincia);
         txtEmail = (EditText) findViewById(R.id.txtEmail);
+        txtPassword = (EditText) findViewById(R.id.txtPassword);
+        txtPassword2 = (EditText) findViewById(R.id.txtPassword2);
         rdSex = (RadioGroup) findViewById(R.id.radioSex);
-        btn = (Button) findViewById(R.id.reset);
+        Button btn= (Button) findViewById(R.id.reset);
+        Button btnRegistrar =(Button)findViewById(R.id.registrar);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Clear the second EditText
-                txtCedula.getText().clear();
-                txtNombre.getText().clear();
-                txtProvincia.getText().clear();
-                txtEmail.getText().clear();
-                rdSex.clearCheck();
-            }
-        });
+    }
 
+    public void registrarUsuario(View view) {
+        cedulaToString = txtCedula.getText().toString();
+        nombreToString = txtNombre.getText().toString();
+        provinciaToString = txtProvincia.getText().toString();
+        emailToString = txtEmail.getText().toString();
+        passwordToString = txtPassword.getText().toString();
+        rdSexBtn = (RadioButton) findViewById(rdSex.getCheckedRadioButtonId());
+        rdSexToString = rdSexBtn.getText().toString();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
+        currentDateToString = format.format(currentDate);
+
+        admin.insertDataUsuarios(Integer.parseInt(cedulaToString),nombreToString,provinciaToString,emailToString,passwordToString,rdSexToString,currentDateToString);
+
+        Toast.makeText(this,"Usuario Registrado!",Toast.LENGTH_LONG).show();
+
+    }
+
+    private boolean validarCorreo(){
+        String emailInput = txtEmail.getEditableText().toString().trim();
+
+        if(emailInput.isEmpty()){
+            txtEmail.setError("Campo no puede estar vacio");
+            return false;
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText()).matches()){
+            txtEmail.setError("Ingrese un correo valido");
+            return false;
+        }
+        else{
+            txtEmail.setError(null);
+            return true;
+        }
+
+    }
+
+    private boolean validarContrasena(){
+        String passwordInput = txtPassword.getEditableText().toString().trim();
+
+        if(passwordInput.isEmpty()){
+            txtPassword.setError("Campo no puede estar vacio");
+            return false;
+        }else if(!PSWD_Pattern.matcher(txtEmail.getText()).matches()){
+            txtPassword.setError("La contraseña debe incluir por lo menos 1 digito, 1 leta mayuscula y por lo menos 4 caracteres");
+            return false;
+        }
+        else{
+            txtPassword.setError(null);
+            return true;
+        }
+
+    }
+
+    private boolean validarContrasenas(){
+        String passwordInput = txtPassword.getEditableText().toString().trim();
+        String passwordInput2 = txtPassword2.getEditableText().toString().trim();
+
+        if(passwordInput.matches(passwordInput2)){
+            txtPassword.setError(null);
+            txtPassword2.setError(null);
+            return true;
+        }else{
+            txtPassword.setError("Las contraseñas no coinciden");
+            txtPassword2.setError("Las contraseñas no coinciden");
+            return false;
+        }
     }
 
     @Override
