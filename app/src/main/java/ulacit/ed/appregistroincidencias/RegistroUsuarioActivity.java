@@ -91,7 +91,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
 
     public void registrarUsuario(View view) {
-            if(!validarCorreo() | !validarContrasenas() | !validarContrasena() | !validarRequeridos() | validarCedula() | validarTelefono()){
+            if(!validarCorreo() | !validarContrasenas() | !validarContrasena() | !validarRequeridos()  | !validarCedula() | !validarTelefono() ){
                 return;
             }
 
