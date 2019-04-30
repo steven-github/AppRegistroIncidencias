@@ -1,5 +1,6 @@
 package ulacit.ed.appregistroincidencias;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,9 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.content.SharedPreferences;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView lbl_hello;
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,17 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sharedpreferences = getSharedPreferences(Login.sessionPrefs, Context.MODE_PRIVATE);
+        if(sharedpreferences.contains(Login.id)){
+            lbl_hello = (TextView) findViewById(R.id.lbl_hello);
+            lbl_hello.setText("Bienvenido a AppRegistroIncidencias, Usuario: "+sharedpreferences.getString(Login.nombre,null));
+        }
+        else{
+            Intent loginRedirect = new Intent(this,Login.class);
+            startActivity(loginRedirect);
+        }
+
     }
 
     @Override
@@ -93,5 +110,15 @@ public class MainActivity extends AppCompatActivity
 //        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 //        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void cerrarSesion(View view){
+        sharedpreferences = getSharedPreferences(Login.sessionPrefs, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+        editor.clear();
+        editor.commit();
+
+        Intent loginRedirect = new Intent(this,Login.class);
+        startActivity(loginRedirect);
     }
 }
