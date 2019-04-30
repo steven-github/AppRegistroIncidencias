@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
             startActivity(mainRedirect);
         }
         else {
-            Toast.makeText(this,"Hay un error en su usuario o contrasena, por favor verifique", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"USUARIO Y/O CONTRASEÑA INVÁLIDAS", Toast.LENGTH_SHORT).show();
         }
 
     }
