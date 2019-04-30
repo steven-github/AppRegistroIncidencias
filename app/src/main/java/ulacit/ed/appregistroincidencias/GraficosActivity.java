@@ -1,10 +1,14 @@
 package ulacit.ed.appregistroincidencias;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
@@ -25,6 +29,7 @@ public class GraficosActivity extends AppCompatActivity {
     ConexionSQLiteHelper admin = new ConexionSQLiteHelper(this,"Usuarios",null,1);
     Date date;
     String temp;
+    SharedPreferences sharedpreferences;
 
 
     @Override
@@ -38,6 +43,15 @@ public class GraficosActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        sharedpreferences = getSharedPreferences(Login.sessionPrefs, Context.MODE_PRIVATE);
+        if(sharedpreferences.contains(Login.id)){
+
+        }
+        else{
+            Intent loginRedirect = new Intent(this,Login.class);
+            startActivity(loginRedirect);
+        }
+
         //Snippet para insercion inicial de datos
         SQLiteDatabase base = admin.getWritableDatabase();
         Cursor fila = base.rawQuery("SELECT COUNT(id) , date(fechaDeCreacion) FROM Usuarios GROUP BY date(fechaDeCreacion)",null);
@@ -46,15 +60,15 @@ public class GraficosActivity extends AppCompatActivity {
         }
         else{
             //Insert de Usuarios
-            admin.insertDataUsuarios(1,"Asdasda","Cartago","Asdasda@gmail.com","123456","Femenino","2018-04-21 08:14:17");
-            admin.insertDataUsuarios(2,"Hola","San Jose","Asdasda@gmail.com","123456","Femenino","2018-04-21 09:14:17");
-            admin.insertDataUsuarios(3,"Mundo","Cartago","Asdasda@gmail.com","123456","Masculino","2018-04-21 10:14:17");
-            admin.insertDataUsuarios(4,"FASdasda","Alajuela","Asdasda@gmail.com","123456","Femenino","2018-04-21 11:14:17");
-            admin.insertDataUsuarios(5,"Asdasda","San Jose","Asdasda@gmail.com","123456","Femenino","2018-04-22 08:14:17");
-            admin.insertDataUsuarios(6,"Hola","San Jose","Asdasda@gmail.com","123456","Masculino","2018-04-22 09:14:17");
-            admin.insertDataUsuarios(7,"Mundo","Heredia","Asdasda@gmail.com","123456","Masculino","2018-04-23 10:14:17");
-            admin.insertDataUsuarios(8,"FASdasda","Puntarenas","Asdasda@gmail.com","123456","Masculino","2018-04-24 11:14:17");
-            admin.insertDataUsuarios(9,"Asdasda","Limon","Asdasda@gmail.com","123456","Femenino","2018-04-21 08:14:17");
+            admin.insertDataUsuarios(1,"Asdasda","Cartago","Asdasda@gmail.com","HolaMundo","Femenino","2018-04-21 08:14:17");
+            admin.insertDataUsuarios(2,"Hola","San Jose","Asdasda1@gmail.com","123456","Femenino","2018-04-21 09:14:17");
+            admin.insertDataUsuarios(3,"Mundo","Cartago","Asdasda2@gmail.com","123456","Masculino","2018-04-21 10:14:17");
+            admin.insertDataUsuarios(4,"FASdasda","Alajuela","Asdasda3@gmail.com","123456","Femenino","2018-04-21 11:14:17");
+            admin.insertDataUsuarios(5,"Asdasda","San Jose","Asdasda4@gmail.com","123456","Femenino","2018-04-22 08:14:17");
+            admin.insertDataUsuarios(6,"Hola","San Jose","Asdasda5@gmail.com","123456","Masculino","2018-04-22 09:14:17");
+            admin.insertDataUsuarios(7,"Mundo","Heredia","Asdasda6@gmail.com","123456","Masculino","2018-04-23 10:14:17");
+            admin.insertDataUsuarios(8,"FASdasda","Puntarenas","Asdasda7@gmail.com","123456","Masculino","2018-04-24 11:14:17");
+            admin.insertDataUsuarios(9,"Asdasda","Limon","Asdasda8@gmail.com","123456","Femenino","2018-04-21 08:14:17");
 
             //Insert de Reportes
             admin.insertDataReportes(1,9,"San Jose","2018-04-21 08:14:17");

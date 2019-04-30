@@ -28,4 +28,10 @@
     <string name="graficosReportesPorFecha">Reportes Registrados Por Fecha</string>
     <string name="title_activity_camara">activity_camara</string>
     <string name="prueba">prueba</string>
+    <string name="title_activity_login">Login</string>
+    <string name="login_username">Correo Electronico</string>
+    <string name="login_Password">Contraseña</string>
+    <string name="login_start_session">Iniciar Sesion</string>
+    <string name="login_end_session">Cerrar Sesion</string>
+    <string name="login_register">Registrarse</string>
 </resources>
