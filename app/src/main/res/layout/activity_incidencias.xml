@@ -121,14 +121,15 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp" />
+            android:layout_margin="15dp"
+            android:entries="@array/incidencias"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/button4"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Registrar Indicencias"
-            style="@style/Widget.AppCompat.Button.Small"
             android:layout_below="@+id/editText"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="8dp"
@@ -138,7 +139,8 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
-            android:onClick="recuperarFoto"/>
+            android:onClick="registrarIncidencia"
+            android:text="Registrar Indicencia" />
 
     </LinearLayout>
 

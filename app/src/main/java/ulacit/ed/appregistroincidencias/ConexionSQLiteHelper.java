@@ -24,6 +24,8 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
 
         db.execSQL("Create table Reportes(id int primary key, id_usuario int, area STRING, fechaDeCreacion TEXT) ");
 
+        db.execSQL("Create table LugarIncidencia(lugar STRING)");
+
         Toast.makeText(con,"Tabla Creada",Toast.LENGTH_LONG).show();
     }
 
@@ -63,5 +65,23 @@ public class ConexionSQLiteHelper extends SQLiteOpenHelper {
         database.insert("Reportes",null,contentValues);
         database.close();
         //Toast.makeText(con,"Data Insertada",Toast.LENGTH_LONG).show();
+    }
+
+    public void insertarDataLugar(String lugar){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("lugar",lugar);
+        database.insert("LugarIncidencia",null,contentValues);
+        database.close();
+    }
+
+    public void ActualizarDataLugar(String lugar){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("lugar",lugar);
+        database.insert("LugarIncidencia",null,contentValues);
+        database.close();
     }
 }

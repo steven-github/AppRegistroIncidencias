@@ -12,15 +12,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.io.File;
 
 public class IncidenciasActivity extends AppCompatActivity {
     private ImageView imagen1;
     private EditText et1;
+    Spinner opciones;
+
+    ConexionSQLiteHelper admin = new ConexionSQLiteHelper(this,"LugarIncidencia",null,1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,11 @@ public class IncidenciasActivity extends AppCompatActivity {
 
         imagen1=(ImageView)findViewById(R.id.imageView);
         et1=(EditText)findViewById(R.id.editText);
+
+        opciones = (Spinner)findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.incidencias,android.R.layout.simple_spinner_item);
+        opciones.setAdapter(adapter);
+
     }
 
     public void tomarFoto(View v) {
@@ -57,6 +68,18 @@ public class IncidenciasActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void registrarIncidencia(View v){
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        String incidencia = spinner.getSelectedItem().toString();
+
+
+        admin.insertarDataLugar(incidencia);
+
+        Toast.makeText(this,"Incidencia Registrada!",Toast.LENGTH_LONG).show();
+
     }
 
 }
