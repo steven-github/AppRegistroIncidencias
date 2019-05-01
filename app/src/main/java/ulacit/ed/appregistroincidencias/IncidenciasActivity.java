@@ -26,6 +26,7 @@ public class IncidenciasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incidencias);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         imagen1=(ImageView)findViewById(R.id.imageView);
         et1=(EditText)findViewById(R.id.editText);

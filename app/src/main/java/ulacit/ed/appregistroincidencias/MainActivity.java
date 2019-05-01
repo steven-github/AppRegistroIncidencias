@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         sharedpreferences = getSharedPreferences(Login.sessionPrefs, Context.MODE_PRIVATE);
         if(sharedpreferences.contains(Login.id)){
             lbl_hello = (TextView) findViewById(R.id.lbl_hello);
-            lbl_hello.setText("Bienvenido a AppRegistroIncidencias, Usuario: "+sharedpreferences.getString(Login.nombre,null));
+            lbl_hello.setText("Bienvenido " + sharedpreferences.getString(Login.nombre,null));
         }
         else{
             Intent loginRedirect = new Intent(this,Login.class);

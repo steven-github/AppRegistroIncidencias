@@ -2,7 +2,7 @@
     <string name="app_name">App Registro Incidencias</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Registro de Incidencias</string>
+    <string name="nav_header_title">Menú</string>
     <string name="nav_header_subtitle">Grupo Oreo</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -23,7 +23,7 @@
     <string name="reset">Reset</string>
     <string name="formulario">Formulario de Registro</string>
     <string name="boton">Guardar</string>
-    <string name="graficosTitulo">Graficos</string>
+    <string name="graficosTitulo">Gráficos</string>
     <string name="graficosUsuariosPorFecha">Usuarios Registrados Por Fecha</string>
     <string name="graficosReportesPorArea">Reportes Registrados Por Area</string>
     <string name="graficosReportesPorFecha">Reportes Registrados Por Fecha</string>
