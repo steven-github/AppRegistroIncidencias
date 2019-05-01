@@ -168,6 +168,7 @@ TODO: Cambiar aspectos de configuracion a uso por recursos
         SQLiteDatabase base = admin.getWritableDatabase();
         Cursor fila = base.rawQuery("SELECT COUNT(id) , date(fechaDeCreacion) FROM Reportes GROUP BY date(fechaDeCreacion)",null);
         GraphView reportes_por_fecha = (GraphView) findViewById(R.id.graph_reportes_fecha);
+
         series = new LineGraphSeries<DataPoint>();
         for (int i=0; i<fila.getCount();i++){
             fila.moveToNext();
