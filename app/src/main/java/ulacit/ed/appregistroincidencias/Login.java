@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -53,6 +54,9 @@ public class Login extends AppCompatActivity {
         SQLiteDatabase base = admin.getWritableDatabase();
         Cursor fila = base.rawQuery("SELECT id,nombre,email FROM Usuarios WHERE email = ? AND password = ?",new String[] {usernameToString, passwordToString});
 
+        Drawable icon = getResources().getDrawable(R.drawable.error);
+        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+
         if(fila.moveToFirst()){
             Toast.makeText(this,"Credenciales Autorizadas", Toast.LENGTH_SHORT).show();
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -65,6 +69,8 @@ public class Login extends AppCompatActivity {
             startActivity(mainRedirect);
         }
         else {
+            username.setError("REQUERIDO", icon);
+            password.setError("REQUERIDO", icon);
             Toast.makeText(this,"USUARIO Y/O CONTRASEÑA INVÁLIDAS", Toast.LENGTH_SHORT).show();
         }
 

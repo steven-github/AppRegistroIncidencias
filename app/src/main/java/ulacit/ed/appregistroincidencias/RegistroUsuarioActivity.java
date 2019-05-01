@@ -2,6 +2,7 @@ package ulacit.ed.appregistroincidencias;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -122,7 +123,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         admin.insertDataUsuarios(Integer.parseInt(cedulaToString),nombreToString,provinciaToString,emailToString,passwordToString,rdSexToString,currentDateToString);
 
 
-        Toast.makeText(this,"Usuario Registrado Exitosamente!",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"USUARIO REGISTRADO EXITOSAMENTE!",Toast.LENGTH_LONG).show();
 
     }
 
@@ -154,11 +155,14 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     private boolean validarCorreo(){
         String emailInput = txtEmail.getEditableText().toString().trim();
 
+        Drawable icon = getResources().getDrawable(R.drawable.error);
+        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+
         if(emailInput.isEmpty()){
-            txtEmail.setError("Este campo no puede estar vacio");
+            txtEmail.setError("REQUERIDO", icon);
             return false;
         }else if(!Patterns.EMAIL_ADDRESS.matcher(txtEmail.getText()).matches()){
-            txtEmail.setError("Ingrese un correo valido");
+            txtEmail.setError("EMAIL INVÁLIDO");
             return false;
         }
         else{
@@ -170,11 +174,14 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
     private boolean validarCedula(){
         String CedulaInput = txtCedula.getEditableText().toString().trim();
+        Drawable icon = getResources().getDrawable(R.drawable.error);
+        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+
         if(CedulaInput.isEmpty()){
-            txtCedula.setError("Este campo no puede estar vacio");
+            txtCedula.setError("REQUERIDO", icon);
             return false;
         }else if(!Ced_Pattern.matcher(CedulaInput).matches()){
-            txtCedula.setError("Ingrese un numero de cedula valida");
+            txtCedula.setError("CÉDULA INVÁLIDA", icon);
             return false;
         }
         else{
@@ -185,11 +192,14 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
     private boolean validarTelefono(){
         String TelefonoInput = txtTelefono.getEditableText().toString().trim();
+        Drawable icon = getResources().getDrawable(R.drawable.error);
+        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+
         if(TelefonoInput.isEmpty()){
-            txtTelefono.setError("Este campo no puede estar vacio");
+            txtTelefono.setError("REQUERIDO", icon);
             return false;
         }else if(!Tel_Pattern.matcher(TelefonoInput).matches()){
-            txtTelefono.setError("Ingrese un numero de telefono valido");
+            txtTelefono.setError("TELÉFONO INVÁLIDO", icon);
             return false;
         }
         else{
@@ -200,12 +210,14 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
     private boolean validarContrasena(){
         String passwordInput = txtPassword.getEditableText().toString().trim();
+        Drawable icon = getResources().getDrawable(R.drawable.error);
+        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
 
         if(passwordInput.isEmpty()){
-            txtPassword.setError("Este campo no puede estar vacio");
+            txtPassword.setError("REQUERIDO", icon);
             return false;
         }else if(!PSWD_Pattern.matcher(passwordInput).matches()){
-            txtPassword.setError("La contraseña debe incluir por lo menos 1 numero, 1 letra mayuscula y por lo menos 4 caracteres");
+            txtPassword.setError("CONTRASEÑA DEBE INCLUIR AL MENOS 1 NÚMERO, 1 LETRA MAYÚSCULA Y 4 CARACTERES", icon);
             return false;
         }
         else{
@@ -218,9 +230,12 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     private boolean validarContrasenas(){
         String passwordInput = txtPassword.getEditableText().toString().trim();
         String passwordInput2 = txtPassword2.getEditableText().toString().trim();
+        Drawable icon = getResources().getDrawable(R.drawable.error);
+        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+
         if(passwordInput.isEmpty() && passwordInput2.isEmpty()){
-            txtPassword.setError("Este campo no puede estar vacio");
-            txtPassword2.setError("Este campo no puede estar vacio");
+            txtPassword.setError("REQUERIDO", icon);
+            txtPassword2.setError("REQUERIDO", icon);
             return false;
         }
 
@@ -229,8 +244,8 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
             txtPassword2.setError(null);
             return true;
         }else{
-            txtPassword.setError("Las contraseñas no coinciden");
-            txtPassword2.setError("Las contraseñas no coinciden");
+            txtPassword.setError("CONTRASEÑAS NO COINCIDEN", icon);
+            txtPassword2.setError("CONTRASEÑAS NO COINCIDEN", icon);
             return false;
         }
     }
@@ -245,27 +260,30 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         RadioButton sexBtn = rdMaleBtn;
         RadioGroup sexoInput = rdSex;
 
+        Drawable icon = getResources().getDrawable(R.drawable.error);
+        icon.setBounds(0, 0, icon.getIntrinsicWidth(), icon.getIntrinsicHeight());
+
 
 
         if(nombreInput.isEmpty() || apellido1Input.isEmpty() || apellido2Input.isEmpty() || provinciaInput.isEmpty() ||  sexoInput.getCheckedRadioButtonId()<=0)
         {
             if(nombreInput.isEmpty()) {
-                txtNombre.setError("Este campo no puede estar vacio");
+                txtNombre.setError("REQUERIDO", icon);
             }
             if(apellido1Input.isEmpty()) {
-                txtApellido1.setError("Este campo no puede estar vacio");
+                txtApellido1.setError("REQUERIDO", icon);
             }
             if(apellido2Input.isEmpty()) {
-                txtApellido2.setError("Este campo no puede estar vacio");
+                txtApellido2.setError("REQUERIDO", icon);
             }
             if(provinciaInput.isEmpty()) {
-                txtProvincia.setError("Este campo no puede estar vacio");
+                txtProvincia.setError("REQUERIDO", icon);
             }
           /*  if(telefonoInput.isEmpty()){
-                txtTelefono.setError("Este campo no puede estar vacio");
+                txtTelefono.setError("REQUERIDO");
             }*/
             if(sexoInput.getCheckedRadioButtonId()<=0) {
-                sexBtn.setError("Seleccione una opcion");
+                sexBtn.setError("SELECCIONE UNA OPCIÓN", icon);
             }
             return false;
 

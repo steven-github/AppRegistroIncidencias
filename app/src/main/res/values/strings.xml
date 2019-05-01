@@ -19,7 +19,8 @@
     <string name="correo">Correo</string>
     <string name="telefono">Teléfono</string>
     <string name="password">Contraseña</string>
-    <string name="confirm">Confirmar</string>
+    <string name="confirm">Confirmar Contraseña</string>
+    <string name="reset">Reset</string>
     <string name="formulario">Formulario de Registro</string>
     <string name="boton">Guardar</string>
     <string name="graficosTitulo">Graficos</string>
