@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="incidencias">
+        <item>Accidente</item>
+        <item>Puente mal estado</item>
+        <item>Calle mal estado</item>
+        <item>Otro</item>
+    </string-array>
+
+</resources>
